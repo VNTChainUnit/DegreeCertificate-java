@@ -3,13 +3,19 @@ package com.xinyi.dc.blockchain.service.impl;
 import com.xinyi.dc.blockchain.api.entity.Certificate;
 import com.xinyi.dc.blockchain.api.entity.TXReceipt;
 import com.xinyi.dc.blockchain.api.service.BlockChainService;
+import com.xinyi.dc.blockchain.node.BlockChain;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BlockChainServiceImpl implements BlockChainService {
+
+    @DubboReference(version = "*")
+    BlockChain blockChain;
+
     @Override
     public String test(String name) {
-        return null;
+        return blockChain.hello(name);
     }
 
     @Override
