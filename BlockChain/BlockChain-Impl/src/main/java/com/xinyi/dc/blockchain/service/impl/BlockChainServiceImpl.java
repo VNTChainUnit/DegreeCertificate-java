@@ -1,5 +1,6 @@
 package com.xinyi.dc.blockchain.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.xinyi.dc.blockchain.api.entity.Certificate;
 import com.xinyi.dc.blockchain.api.entity.TXReceipt;
 import com.xinyi.dc.blockchain.api.service.BlockChainService;
@@ -20,12 +21,26 @@ public class BlockChainServiceImpl implements BlockChainService {
 
     @Override
     public Certificate getCertificate(String certificateNumber, String idnumber) {
-        return null;
+        String jsonStr = blockChain.getCertificate(certificateNumber, idnumber);
+        if(jsonStr.equals("")){
+            return null;
+        }
+        else{
+            return JSON.parseObject(jsonStr, Certificate.class);
+        }
     }
 
     @Override
     public Boolean hasCertificate(Certificate certificate) {
-        return null;
+        String certificateNumber = blockChain.existCertificate(certificate.getName(),certificate.getStudentNumber(),
+                certificate.getSchool(),certificate.getIdnumber());
+        if(certificateNumber.equals("")){
+            return false;
+        }
+        else {
+            certificate.setCertificateNumber(certificateNumber);
+            return true;
+        }
     }
 
     @Override
@@ -35,11 +50,17 @@ public class BlockChainServiceImpl implements BlockChainService {
 
     @Override
     public Boolean checkCertificate(Certificate certificate) {
-        return null;
+        return blockChain.checkCertificate(certificate.getCertificateNumber(),
+                certificate.getName(), certificate.getSchool(),certificate.getDegreeType(),certificate.
+                        getGraduationDate(),certificate.getMajor());
     }
 
     @Override
     public TXReceipt getTXReceipt(String transactionHash) {
-        return null;
+        String jsonRes = blockChain.getTransaction(transactionHash);
+        if(jsonRes.equals("")){
+            return null;
+        }
+        else return JSON.parseObject(jsonRes,TXReceipt.class);
     }
 }

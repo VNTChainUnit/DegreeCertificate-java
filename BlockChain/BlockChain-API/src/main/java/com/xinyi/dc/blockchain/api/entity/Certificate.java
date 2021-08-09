@@ -20,19 +20,19 @@ public class Certificate {
     private String idnumber;
 
     // 学位类别
-    private String degreetype;
+    private String degreeType;
 
     // 专业
     private String major;
 
     // 毕业年月
-    private String graduationdate;
+    private String graduationDate;
 
     // 学号
-    private String studentnumber;
+    private String studentNumber;
 
     // 证书编号
-    private String certificatenumber;
+    private String certificateNumber;
 
     //证书哈希
     private String hash;
