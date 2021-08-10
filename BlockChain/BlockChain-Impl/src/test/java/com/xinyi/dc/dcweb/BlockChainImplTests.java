@@ -27,6 +27,14 @@ class BlockChainImplTests {
     }
 
     @Test
+    void getCertificate(){
+        String certNumber = "zsbh300";
+        String idNumber = "300";
+        Certificate certificate = blockChainService.getCertificate(certNumber,idNumber);
+        System.out.println(certificate);
+    }
+
+    @Test
     void testGetCertificate(){
         String certNumber = "zsbh202";
         String idNumber = "202";
@@ -58,6 +66,21 @@ class BlockChainImplTests {
         TXReceipt txReceipt = blockChainService.getTXReceipt(hash);
         System.out.println(txReceipt);
         Assertions.assertEquals(txReceipt.getHash(),hash);
+    }
+
+    @Test
+    void testAddCertificate(){
+        Certificate certificate = new Certificate();
+        certificate.setCertificateNumber("zsbh306");
+        certificate.setDegreeType("本科");
+        certificate.setName("xm");
+        certificate.setSchool("测试大学");
+        certificate.setIdnumber("306");
+        certificate.setStudentNumber("xh306");
+        certificate.setGraduationDate("2021-08");
+        certificate.setMajor("major");
+        TXReceipt txReceipt = blockChainService.addCertificate(certificate);
+        Assertions.assertNotNull(txReceipt);
     }
 
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BlockChainServiceImpl implements BlockChainService {
 
-    @DubboReference(version = "*")
+    @DubboReference(version = "*",timeout = 10000,retries = 0)
     BlockChain blockChain;
 
     @Override
@@ -45,7 +45,12 @@ public class BlockChainServiceImpl implements BlockChainService {
 
     @Override
     public TXReceipt addCertificate(Certificate certificate) {
-        return null;
+        String jsonRes = blockChain.addCertificate(certificate.getSchool(),certificate.getName(),
+                certificate.getIdnumber(),certificate.getDegreeType(),certificate.getMajor(),
+                certificate.getGraduationDate(),certificate.getStudentNumber(),
+                certificate.getCertificateNumber());
+        if(jsonRes.equals(""))return null;
+        else return JSON.parseObject(jsonRes,TXReceipt.class);
     }
 
     @Override
