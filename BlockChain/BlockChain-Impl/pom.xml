@@ -6,9 +6,11 @@
         <artifactId>BlockChain</artifactId>
         <groupId>com.xinyi.dc</groupId>
         <version>0.0.1-SNAPSHOT</version>
+<!--        <relativePath/>-->
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
     <artifactId>BlockChain-Impl</artifactId>
 
     <properties>
@@ -19,7 +21,7 @@
         <dependency>
             <groupId>com.xinyi.dc</groupId>
             <artifactId>BlockChain-API</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -44,5 +46,13 @@
             </exclusions>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.7.RELEASE</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

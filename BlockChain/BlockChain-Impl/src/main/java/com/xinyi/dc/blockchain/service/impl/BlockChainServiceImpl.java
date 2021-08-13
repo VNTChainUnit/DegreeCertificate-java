@@ -6,9 +6,11 @@ import com.xinyi.dc.blockchain.api.entity.TXReceipt;
 import com.xinyi.dc.blockchain.api.service.BlockChainService;
 import com.xinyi.dc.blockchain.node.BlockChain;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
 
 @Service
+@DubboService(interfaceClass = BlockChainService.class)
 public class BlockChainServiceImpl implements BlockChainService {
 
     @DubboReference(version = "*",timeout = 10000,retries = 0)
